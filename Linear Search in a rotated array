@@ -1,0 +1,30 @@
+Question 9: Linear Search in a Rotated Array
+Given a rotated sorted array of integers and a target value, find the index of the target value in the array using linear search. If the target value is not found, return -1.
+
+```
+#include <iostream>
+using namespace std;
+
+int linearSearchRotated(int arr[], int n, int target) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int arr[] = {4, 5, 6, 1, 2, 3};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 2;
+    int result = linearSearchRotated(arr, n, target);
+    cout << "Index of " << target << ": " << result << endl;
+    return 0;
+}
+```
+
+Output:
+```
+Index of 2: 4
+``
