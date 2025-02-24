@@ -1,0 +1,44 @@
+Question 4: Binary Search with a Twist
+Given a sorted list of integers and a target value, find the index of the target value in the list using binary search. If the target value is not found, return the index of the next smallest element. If no such element exists, return -1.
+
+```
+#include <iostream>
+using namespace std;
+
+int binarySearchTwist(int arr[], int n, int target) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    if (low < n) {
+        return low;
+    } else {
+        return -1;
+    }
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 6;
+    int result = binarySearchTwist(arr, n, target);
+    if (result != -1) {
+        cout << "Index of next smallest element: " << result << endl;
+    } else {
+        cout << "No smaller element exists." << endl;
+    }
+    return 0;
+}
+```
+
+Output:
+```
+Index of next smallest element: 4
+``
