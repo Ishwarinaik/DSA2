@@ -1,0 +1,30 @@
+Question 10: Linear Search with Duplicates
+Given a list of integers that may contain duplicates and a target value, find the first index of the target value in the list using linear search. If the target value is not found, return -1.
+
+```
+#include <iostream>
+using namespace std;
+
+int linearSearchDuplicates(int arr[], int n, int target) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int arr[] = {1, 2, 2, 3, 4, 2};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 2;
+    int result = linearSearchDuplicates(arr, n, target);
+    cout << "First index of " << target << ": " << result << endl;
+    return 0;
+}
+```
+
+Output:
+```
+First index of 2: 1
+```
