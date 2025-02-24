@@ -1,0 +1,65 @@
+Question 8: Binary Search in a Bitonic Array
+Given a bitonic array of integers and a target value, find the index of the target value in the array using binary search.
+
+```
+#include <iostream>
+using namespace std;
+
+int binarySearchBitonic(int arr[], int n, int target) {
+    int maxIndex = -1;
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (mid > 0 && arr[mid] > arr[mid - 1] && mid < n - 1 && arr[mid] > arr[mid + 1]) {
+            maxIndex = mid;
+            break;
+        } else if (mid > 0 && arr[mid] < arr[mid - 1]) {
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    }
+    if (maxIndex == -1) {
+        return -1;
+    }
+    low = 0;
+    high = maxIndex;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    low = maxIndex + 1;
+    high = n - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5, 4, 3, 2, 1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 4;
+    int result = binarySearchBitonic(arr, n, target);
+    cout << "Index of " << target << ": " << result << endl;
+    return 0;
+}
+```
+
+Output:
+```
+Index of 4: 3
+``
