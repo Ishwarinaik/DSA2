@@ -1,0 +1,33 @@
+Question 7: Linear Search in a Matrix
+Given a matrix of integers and a target value, find the row and column indices of the target value in the matrix using linear search. If the target value is not found, return (-1, -1).
+
+```
+#include <iostream>
+using namespace std;
+
+pair<int, int> linearSearchMatrix(int arr[][3], int rows, int cols, int target) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (arr[i][j] == target) {
+                return make_pair(i, j);
+            }
+        }
+    }
+    return make_pair(-1, -1);
+}
+
+int main() {
+    int arr[][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    int rows = sizeof(arr) / sizeof(arr[0]);
+    int cols = sizeof(arr[0]) / sizeof(arr[0][0]);
+    int target = 5;
+    pair<int, int> result = linearSearchMatrix(arr, rows, cols, target);
+    cout << "Indices of " << target << ": (" << result.first << ", " << result.second << ")" << endl;
+    return 0;
+}
+```
+
+Output:
+```
+Indices of 5: (1, 1)
+``
