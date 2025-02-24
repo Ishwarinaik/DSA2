@@ -1,0 +1,38 @@
+Question 10: Binary Search in a 2D Matrix
+Given a 2D matrix of integers and a target value, find the position of the target value in the matrix using binary search.
+
+```
+#include <iostream>
+using namespace std;
+
+pair<int, int> binarySearchMatrix(int arr[][3], int rows, int cols, int target) {
+    int low = 0, high = rows * cols - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        int midVal = arr[mid / cols][mid % cols];
+        if (midVal == target) {
+            return make_pair(mid / cols, mid % cols);
+        } else if (midVal < target) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    return make_pair(-1, -1);
+}
+
+int main() {
+    int arr[][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    int rows = sizeof(arr) / sizeof(arr[0]);
+    int cols = sizeof(arr[0]) / sizeof(arr[0][0]);
+    int target = 5;
+    pair<int, int> result = binarySearchMatrix(arr, rows, cols, target);
+    cout << "Position of " << target << ": (" << result.first << ", " << result.second << ")" << endl;
+    return 0;
+}
+```
+
+Output:
+```
+Position of 5: (1, 1)
+```
