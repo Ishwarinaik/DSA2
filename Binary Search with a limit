@@ -1,0 +1,37 @@
+Question 6: Binary Search with a Limit
+Given a sorted list of integers and a target value, find the index of the target value in the list using binary search, but only search up to a given limit. If the target value is not found within the limit, return -1.
+
+```
+#include <iostream>
+using namespace std;
+
+int binarySearchLimit(int arr[], int n, int target, int limit) {
+    int low = 0, high = min(limit, n) - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 3;
+    int limit = 4;
+    int result = binarySearchLimit(arr, n, target, limit);
+    cout << "Index of " << target << ": " << result << endl;
+    return 0;
+}
+```
+
+Output:
+```
+Index of 3: 2
+``
