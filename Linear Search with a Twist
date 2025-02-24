@@ -1,0 +1,34 @@
+Question 6: Linear Search with a Twist
+Given a list of integers and a target value, find the index of the target value in the list using linear search. If the target value is not found, return the index of the next smallest element. If no such element exists, return -1.
+
+```
+#include <iostream>
+using namespace std;
+
+int linearSearchTwist(int arr[], int n, int target) {
+    int nextSmallest = -1;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+        if (arr[i] > target && (nextSmallest == -1 || arr[i] < arr[nextSmallest])) {
+            nextSmallest = i;
+        }
+    }
+    return nextSmallest;
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 3;
+    int result = linearSearchTwist(arr, n, target);
+    cout << "Index of " << target << ": " << result << endl;
+    return 0;
+}
+```
+
+Output:
+```
+Index of 3: 2
+``
